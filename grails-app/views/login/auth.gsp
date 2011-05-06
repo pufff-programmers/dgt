@@ -6,7 +6,7 @@
 	margin:15px 0px; padding:0px;
 	text-align:center;
 }
-#login .inner {
+.login .inner {
 	width:260px;
 	margin:0px auto;
 	text-align:left;
@@ -15,10 +15,10 @@
 	border-bottom:1px dashed #499ede;
 	background-color:#EEF;
 }
-#login .inner .fheader {
+.login .inner .fheader {
 	padding:4px;margin:3px 0px 3px 0;color:#2e3741;font-size:14px;font-weight:bold;
 }
-#login .inner .cssform p {
+.login .inner .cssform p {
 	clear: left;
 	margin: 0;
 	padding: 5px 0 8px 0;
@@ -27,23 +27,23 @@
 	margin-bottom: 10px;
 	height: 1%;
 }
-#login .inner .cssform input[type='text'] {
+.login .inner .cssform input[type='text'] {
 	width: 120px;
 }
-#login .inner .cssform label {
+.login .inner .cssform label {
 	font-weight: bold;
 	float: left;
 	margin-left: -105px;
 	width: 100px;
 }
-#login .inner .login_message {color:red;}
-#login .inner .text_ {width:120px;}
-#login .inner .chk {height:12px;}
+.login .inner .login_message {color:red;}
+.login .inner .text_ {width:120px;}
+.login .inner .chk {height:12px;}
 </style>
 </head>
 
 <body>
-	<div id='login'>
+	<div class='login'>
 		<div class='inner'>
 			<g:if test='${flash.message}'>
 			<div class='login_message'>${flash.message}</div>
@@ -67,6 +67,28 @@
 					<input type='submit' value='Login' />
 				</p>
 			</form>
+		</div>
+	</div>
+
+    <div class='login'>
+		<div class='inner'>
+			<g:if test='${flash.message}'>
+			<div class='login_message'>${flash.message}</div>
+			</g:if>
+			<div class='fheader'>Regístrate..</div>
+            <g:form action="signup" class="cssform">
+                <p>
+                    <label for="email">Email</label>
+                    <g:textField name="username"/>
+                </p>
+                <p>
+                    <label for="password">Password</label>
+                    <g:passwordField name="password" />
+                </p>
+                <p>
+                    <g:submitButton name="signup" value="Aceptar"/>
+                </p>
+            </g:form>
 		</div>
 	</div>
 <script type='text/javascript'>

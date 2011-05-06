@@ -11,6 +11,7 @@ import org.springframework.security.authentication.LockedException
 import org.springframework.security.core.context.SecurityContextHolder as SCH
 import org.springframework.security.web.WebAttributes
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import com.pufff.domain.user.User
 
 class LoginController {
 
@@ -35,6 +36,14 @@ class LoginController {
 			redirect action: auth, params: params
 		}
 	}
+
+    def signup = {
+        User user = new User(params)
+        if(user.save(true)) {
+            redirect controller: 'alerta', action: 'list'
+        }
+        redirect action: auth, params: params
+    }
 
 	/**
 	 * Show the login page.
