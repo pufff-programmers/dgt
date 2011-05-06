@@ -2,6 +2,8 @@ package com.pufff.domain.user
 
 class User {
 
+    static hasMany = [alertas:Alerta]
+
 	String username
 	String password
 	boolean enabled
