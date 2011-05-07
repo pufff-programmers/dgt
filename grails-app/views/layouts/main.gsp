@@ -22,6 +22,7 @@
             <img src="${resource(dir:'images',file:'cono.jpg')}" alt="Tu avisador personal de incidencias" border="0" />
         </div>
         --%><div id="content">
+            <%--  Mensajes y errores --%>
             <g:layoutBody />
         </div>
         <div id="footer">

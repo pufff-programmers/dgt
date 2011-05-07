@@ -23,15 +23,24 @@ class HomeController {
     }
 
     def createAlerta = {HomeCommand cmd ->
-        Carretera carretera = Carretera.findById(cmd.carretera)
-        Alerta alerta = new Alerta(carretera: carretera,
-            pkInicial: cmd.pkInicial,
-            pkFinal: cmd.pkFinal,
-            email: cmd.email)
-        alertasQuartzService.programar(alerta)
-        render(view: "exito", model: [carretera: carretera, cmd: cmd])
+        if(cmd.hasErrors()) {
+            Map model =[cmd: cmd]
+            model.putAll(getDefModel())
+            render([view:'index', model: model])
+        }
+        else {
+            Carretera carretera = Carretera.findById(cmd.carretera)
+            Alerta alerta = new Alerta(carretera: carretera,
+                pkInicial: cmd.pkInicial,
+                pkFinal: cmd.pkFinal,
+                email: cmd.email)
+            alertasQuartzService.programar(alerta)
+            //flash.message="Creada correctamente alerta en ${carretera.nombre}, kilómetros ${cmd.pkInicial} a ${cmd.pkFinal}, a la dirección ${cmd.email}. Puedes crear más para otras carreteras y/o tramos que utilices habitualmente"
+            render(view: "exito", model: [carretera: carretera, cmd: cmd])
+        }
     }
 }
+
 
 class HomeCommand {
     Integer carretera
@@ -43,9 +52,10 @@ class HomeCommand {
     List minutos
 
     static constraints = {
-        email(email: true, nullable:false)
+        carretera(nullable: false, blank: false)
         pkInicial(blank: false, nullable:false)
         pkFinal(blank: false, nullable:false)
-        diaSemana(size: 1..7, nullable:false)
+        //diaSemana(size: 1..7, nullable:false, blank:false)
+        email(email: true, blank:false)
     }
 }

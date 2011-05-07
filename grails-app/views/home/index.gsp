@@ -15,14 +15,13 @@
   <body>
     <p><h3>¿Cómo funciona?</h3></p>
     <br/>
-    <%--  Mensajes y errores --%>
     <g:if test="${flash.message}">
         <div class="message">${flash.message}</div>
     </g:if>
-    <g:hasErrors bean="cmd">
-    <div class="errors">
-        <g:renderErrors bean="${cmd}" as="list" />
-    </div>
+    <g:hasErrors bean="${cmd}">
+        <div class="errors">
+            <g:renderErrors bean="${cmd}" as="list" />
+        </div>
     </g:hasErrors>
     <%--  Fin Mensajes y errores --%>
     <g:form controller="home" action="createAlerta">
@@ -76,9 +75,11 @@
                 <h4>
                     Dinos la dirección de email a la que quieres que te lleguen las alertas<br/>
                 </h4>
+                <br/>
                 <g:textField name="email"/>
             </li>
         </ol>
+        <br/>
         <g:submitButton name="submit" value="Crear alerta"/>
     </g:form>
   </body>
