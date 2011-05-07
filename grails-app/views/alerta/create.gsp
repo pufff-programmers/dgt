@@ -33,7 +33,7 @@
                                     <label for="carretera"><g:message code="alerta.carretera.label" default="Carretera" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: alertaInstance, field: 'carretera', 'errors')}">
-                                    <g:select name="carretera.id" from="${com.pufff.domain.trafico.Carretera.list()}" optionKey="id" value="${alertaInstance?.carretera?.id}"  />
+                                    <g:select name="carretera.id" from="${com.pufff.domain.trafico.Carretera.list().sort()}" optionKey="id" value="${alertaInstance?.carretera?.id}"  />
                                 </td>
                             </tr>
                         
