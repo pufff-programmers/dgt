@@ -15,8 +15,8 @@ environments {
         dataSource {
             dbCreate = "update" // one of 'create', 'create-drop','update'
             url = "jdbc:mysql://localhost:3306/dgt?jdbcCompliantTruncation=false&zeroDateTimeBehavior=convertToNull&useUnicode=yes&characterEncoding=UTF-8"
-            username="root"
-            password="root"
+            username="dgt"
+            password="dgt"
         }
     }
     test {
