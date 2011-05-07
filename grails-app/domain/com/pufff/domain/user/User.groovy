@@ -13,6 +13,8 @@ class User {
 
     String token = System.currentTimeMillis()
 
+
+
 	static constraints = {
 		username email:true, blank: false, unique: true
 	}

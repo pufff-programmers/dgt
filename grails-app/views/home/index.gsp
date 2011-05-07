@@ -25,7 +25,7 @@
                 <li>
                     <h4>Elige una carretera a nivel nacional</h4>
                     <br/>
-                    <g:select name="carretera.id" from="${com.pufff.domain.trafico.Carretera.list().sort()}" optionKey="id" value="${alertaInstance?.carretera?.id}"  />
+                    <g:select name="carretera.id" from="${com.pufff.domain.trafico.Carretera.list(sort:'nombre')}" optionKey="id" value="${alertaInstance?.carretera?.id}"  />
                     <br/><br/>
                 </li>
                 <li>
