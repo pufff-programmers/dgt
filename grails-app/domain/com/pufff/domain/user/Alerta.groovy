@@ -4,7 +4,7 @@ import com.pufff.domain.trafico.Carretera
 
 class Alerta {
 
-    static belongsTo = [user:User]
+    //static belongsTo = [user:User]
 
     Carretera carretera
     Double pkInicial

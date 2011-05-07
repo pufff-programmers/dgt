@@ -24,7 +24,9 @@
         --%>
         <g:layoutBody />
         <div id="footer">
-            Una aplicación de <a href="#">Mario Muñoz</a> y <a href="http://twitter.com/#!/marianongdev">Mariano Navas</a>
+            <h3>
+                Una aplicación de <a href="#">Mario Muñoz</a> y <a href="http://twitter.com/#!/marianongdev">Mariano Navas</a>
+            </h3>
         </div>
     </body>
 </html>

@@ -15,24 +15,30 @@
   <body>
     <div id="content">
         <p><h3>¿Cómo funciona?</h3></p>
-        <%--
-        <p>
-            Todo lo que tienes que hacer es dar de alta alertas. Selecciona una carretera a nivel nacional (España), un tramo kilométrico
-        </p>
-        --%>
+        <br/>
+        <%--  Mensajes y errores --%>
+        <g:if test="${flash.message}">
+            <div class="message">${flash.message}</div>
+        </g:if>
+        <g:hasErrors bean="cmd">
+        <div class="errors">
+            <g:renderErrors bean="${cmd}" as="list" />
+        </div>
+        </g:hasErrors>
+        <%--  Fin Mensajes y errores --%>
         <g:form controller="home" action="createAlerta">
             <ol>
                 <li>
                     <h4>Elige una carretera a nivel nacional</h4>
                     <br/>
-                    <g:select name="carretera.id" from="${com.pufff.domain.trafico.Carretera.list(sort:'nombre')}" optionKey="id" value="${alertaInstance?.carretera?.id}"  />
+                    <g:select name="carretera" from="${com.pufff.domain.trafico.Carretera.list(sort:'nombre')}" optionKey="id" optionValue="nombre" noSelection="['':'--']"/>
                     <br/><br/>
                 </li>
                 <li>
                     <h4>Selecciona los puntos kilométricos que te afectan</h4>
                     <br/>
-                    Desde <g:textField name="pkInicial" value="${fieldValue(bean: alertaInstance, field: 'pkInicial')}" /> Km.
-                    hasta <g:textField name="pkFinal" value="${fieldValue(bean: alertaInstance, field: 'pkFinal')}" /> Km.
+                    Desde <g:textField name="pkInicial" size="8"/> Km.<%-- value="${fieldValue(bean: alertaInstance, field: 'pkInicial')}" size="8"--%>
+                    hasta <g:textField name="pkFinal" size="8"/> Km.
                     <br/>
                     <br/>
                 </li>
@@ -47,17 +53,29 @@
                     <br/>
                 </li>
                 <li>
-                    <h4>Elige a qué horas (máximo ${numHoras}) para cada uno de estos días deseas recibir la alerta de la zona elegida</h4>
+                    <h4>
+                        Elige a qué horas (máximo ${numHoras}) para cada uno de estos días deseas recibir la alerta de la zona elegida
+                        <br/>
+                        Si no eliges ninguna, se te enviará la alerta a las 00.00 del/los dia/s seleccionado/s
+                    </h4>
                     <br/>
-                        Aquí me he quedado (Mariano)
-                        <%--
-                                        TODO Mariano, trabajando aquí, completando formulario de entrada de alertas
-                                        <g:each in="[0..${numHoras}]" var="cont">
-                                            H ${cont} <g:textField name="hora${cont}" value="${fieldValue(bean: alertaInstance, field: 'horas[${cont}]')}" />&nbsp;
-                                        </g:each>
-                                        --%>
+                    <table border="0" width="80%">
+                        <tr>
+                            <g:each in="${1..numHoras}" var="cont">
+                                <td align="center">
+                                    H ${cont}&nbsp;
+                                    <g:select name="horas" from="${0..23}" noSelection="['':'--']"/>
+                                    <g:select name="minutos" from="${0..60}" noSelection="['':'--']"/>
+                                </td>
+                            </g:each>
+                        </tr>
+                    </table>
                     <br/>
                     <br/>
+                </li>
+                <li>
+                    Dinos la dirección de email a la que quieres que te lleguen las alertas<br/>
+                    <g:textField name="email"/>
                 </li>
             </ol>
             <g:submitButton name="submit" value="Crear alerta"/>
