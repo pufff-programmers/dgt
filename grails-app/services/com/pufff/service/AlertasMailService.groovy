@@ -1,7 +1,6 @@
 package com.pufff.service
 
 import com.pufff.domain.user.Alerta
-import com.pufff.domain.user.User
 import com.pufff.domain.trafico.Parseo
 import com.pufff.domain.trafico.Incidencia
 
@@ -9,9 +8,11 @@ class AlertasMailService {
 
     static transactional = true
 
-    def notificar(User user, Alerta alerta) {
+    def mailService
+
+    def notificar(Alerta alerta) {
         def incidencias = findIncidencias(alerta)
-        sendMail(user, incidencias)
+        sendMail(alerta, incidencias)
     }
 
     private def findIncidencias(Alerta alerta) {
@@ -28,8 +29,13 @@ class AlertasMailService {
         return result
     }
 
-    private def sendMail(User user, incidencias) {
-        // TODO
+    private def sendMail(Alerta alerta, incidencias) {
+        sendMail {
+            to alerta.email
+            subject "Incidencia en ${alerta.carretera.nombre}"
+            body(view: "/alerta/notification",
+                    model: [alerta: alerta, incidencias: incidencias])
+        }
     }
 
 }

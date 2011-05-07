@@ -7,7 +7,7 @@ class TokenController {
     def cancelarSuscripcion = {
         def alertas = Alerta.findByEmail(params.email)
         alertas.each { alerta ->
-            eliminarAlerta(user, alerta)
+            eliminarAlerta(alerta)
         }
     }
 
