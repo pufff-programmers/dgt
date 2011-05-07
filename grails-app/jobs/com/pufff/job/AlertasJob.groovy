@@ -7,12 +7,13 @@ import com.pufff.domain.user.Alerta
 
 class AlertasJob {
 
+    def alertasMailService
+
     def execute(JobExecutionContext context) {
         Long idAlerta = context.trigger.jobName as Long
         Long idUsuario = context.trigger.jobGroup as Long
         User user = User.get(idUsuario)
         Alerta alerta = Alerta.get(idAlerta)
-        // TODO
-        // alertasMailService.notificar(user, alerta)
+        alertasMailService.notificar(user, alerta)
     }
 }

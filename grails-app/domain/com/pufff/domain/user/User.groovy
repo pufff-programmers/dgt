@@ -11,9 +11,10 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
 
+    String token = System.currentTimeMillis()
+
 	static constraints = {
 		username email:true, blank: false, unique: true
-		password blank: false
 	}
 
 	static mapping = {

@@ -9,6 +9,8 @@ class Alerta {
     Double pkFinal
     String email
 
+    String token = System.currentTimeMillis()
+
     static constraints = {
         email(email: true)
     }
