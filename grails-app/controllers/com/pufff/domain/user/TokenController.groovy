@@ -5,15 +5,15 @@ class TokenController {
     def alertasQuartzService
 
     def cancelarSuscripcion = {
-        def alertas = Alerta.findByEmail(params.email)
+        def alertas = Alerta.findAllByEmail(params.email)
         alertas.each { alerta ->
             eliminarAlerta(alerta)
         }
     }
 
     def cancelarAlerta = {
-        Alerta alerta = Alerta.findByToken(params.token)
-        eliminarAlerta(alerta.user)
+        Alerta alerta = Alerta.findAllByToken(params.token)
+        eliminarAlerta(alerta)
     }
 
     def usoInadecuado = {
