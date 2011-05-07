@@ -6,12 +6,6 @@ quartz {
 }
 
 environments {
-    development {
-        quartz {
-            autoStartup = false
-            jdbcStore = true
-        }
-    }
     test {
         quartz {
             autoStartup = false

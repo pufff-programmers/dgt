@@ -2,16 +2,17 @@
 <html>
   <head><title>Tus alertas de tráfico</title></head>
   <body>
-        <div class="incidencia">
-      <g:each in="incidencias" var="incidencia">
-          Incidencia en ${incidencia.carretera.nombre}, con motivo de ${incidencia.causaIncidencia.description}.
+
+      <g:each in="${incidencias}" var="incidencia">
+            <div class="incidencia">
+          Incidencia en ${incidencia.carretera.nombre}, con motivo de ${incidencia.causa.description}.
 
           Desde el kilómetro ${incidencia.pkInicial} hasta el ${incidencia.pkFinal},
           hay un nivel de circulación ${incidencia.nivelCirculacion.description}, en sentido ${incidencia.sentido}
           desde las <g:formatDate date="${incidencia.dateInicio}" format="hh:mm"/>.
-
-      </g:each>
             </div>
+      </g:each>
+
 
         <p>
             Puedes eliminar tu suscripción a esta alerta pinchando <g:createLink controller="token" action="cancelarAlerta" params="${[token:alerta.token]}">aquí</g:createLink>.

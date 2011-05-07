@@ -2,8 +2,9 @@ package com.pufff.service
 
 import com.pufff.domain.user.Alerta
 import org.quartz.CronTrigger
-import com.pufff.job.AlertasJob
 import com.pufff.quartz.CronExpression
+import org.codehaus.groovy.grails.plugins.quartz.GrailsTaskClassProperty
+import com.pufff.job.AlertasJob
 
 class AlertasQuartzService {
 
@@ -13,7 +14,7 @@ class AlertasQuartzService {
     def programar(Alerta alerta) {
         def cronExpressions = buildCronExpression(alerta)
         cronExpressions.each { String cronExpression ->
-            CronTrigger trigger = new CronTrigger(jobName: alerta.id as String, jobGroup: alerta.email, cronExpression: cronExpression)
+            CronTrigger trigger = new CronTrigger(name: "${alerta.id}_${alerta.email}", group: GrailsTaskClassProperty.DEFAULT_GROUP, jobName: alerta.id as String, jobGroup: alerta.email, cronExpression: cronExpression, volatility: true)
             AlertasJob.schedule(trigger)
         }
     }

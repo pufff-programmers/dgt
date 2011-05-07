@@ -16,7 +16,7 @@ class AlertasMailService {
     }
 
     private def findIncidencias(Alerta alerta) {
-        Parseo parseo = Parseo.findAll().unique()
+        Parseo parseo = Parseo.list(sort:'id', order:'desc').get(0)
         def incidenciaCriteria = Incidencia.createCriteria()
         def result = incidenciaCriteria.list {
             and {
@@ -30,11 +30,13 @@ class AlertasMailService {
     }
 
     private def sendMail(Alerta alerta, incidencias) {
-        sendMail {
-            to alerta.email
-            subject "Incidencia en ${alerta.carretera.nombre}"
-            body(view: "/alerta/notification",
-                    model: [alerta: alerta, incidencias: incidencias])
+        if(incidencias.size() > 0 ) {
+            sendMail {
+                to alerta.email
+                subject "Incidencia en ${alerta.carretera.nombre}"
+                body(view: "/alerta/notificacion",
+                        model: [alerta: alerta, incidencias: incidencias])
+            }
         }
     }
 

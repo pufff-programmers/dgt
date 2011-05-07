@@ -14,7 +14,7 @@ class CronExpression {
     int second = 0
     int minute
     int hour
-    String dayOfMonth = '*'
+    String dayOfMonth = '?'
     String month = '*'
     String dayOfWeek
 
