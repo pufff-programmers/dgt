@@ -29,8 +29,7 @@ class HomeController {
             pkFinal: cmd.pkFinal,
             email: cmd.email)
         alertasQuartzService.programar(alerta)
-        String msg = "Creada correctamente alerta en ${carretera.nombre}, kilómetros ${cmd.pkInicial} a ${cmd.pkFinal}, a la dirección ${cmd.email}. Puedes crear más para otras carreteras y/o tramos que utilices habitualmente"
-        render(view: "exito", model: msg)
+        render(view: "exito", model: [carretera: carretera, cmd: cmd])
     }
 }
 

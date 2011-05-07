@@ -13,6 +13,9 @@
       <meta name="layout" content="main" />
   </head>
   <body>
-    ${msg}
+    <h1>¡Enhorabuena!</h1>
+    <h3>Creada correctamente alerta en ${carretera.nombre}, kilómetros ${cmd.pkInicial} a ${cmd.pkFinal}, a la dirección ${cmd.email}. Puedes crear más para otras carreteras y/o tramos que utilices habitualmente</h3>
+    <br/>
+    <g:link action="index">Volver a la página de creación de alertas</g:link>
   </body>
 </html>

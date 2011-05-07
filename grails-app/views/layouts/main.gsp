@@ -21,8 +21,9 @@
         <div id="grailsLogo">
             <img src="${resource(dir:'images',file:'cono.jpg')}" alt="Tu avisador personal de incidencias" border="0" />
         </div>
-        --%>
-        <g:layoutBody />
+        --%><div id="content">
+            <g:layoutBody />
+        </div>
         <div id="footer">
             <h3>
                 Una aplicación de <a href="#">Mario Muñoz</a> y <a href="http://twitter.com/#!/marianongdev">Mariano Navas</a>
