@@ -12,6 +12,11 @@
     <title>Las incidencias en tus rutas</title>
     <meta name="layout" content="main" />
     <script type="text/javascript">
+        $(document).ready(function() {
+            $('#pkInicial').numeric();
+            $('#pkFinal').numeric();
+        });
+
         function goRss() {
             //alert("Llama a la función ok")
             document.getElementById("isRss").value=true;
@@ -23,6 +28,10 @@
             var kmFinal = $('#pkFinal').val();
             if(kmInicial != '' && kmFinal != '') {
                 $('#otherConfig').slideDown();
+                $('#submit').show();
+            } else {
+                $('#otherConfig').slideUp();
+                $('#submit').hide();
             }
         }
 
@@ -112,7 +121,7 @@
             </div>
         </ol>
         <br/>
-        <g:submitButton name="submit" value="Crear alerta"/>
+        <g:submitButton style="display:none" id="submit" name="submit" value="Crear alerta"/>
     </g:form>
   </body>
 </html>
