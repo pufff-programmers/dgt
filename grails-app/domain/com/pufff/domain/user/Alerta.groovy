@@ -15,6 +15,7 @@ class Alerta {
     List minutos
 
     String token = System.currentTimeMillis()
+    Integer numeroJobs
 
     static constraints = {
         email(email: true)

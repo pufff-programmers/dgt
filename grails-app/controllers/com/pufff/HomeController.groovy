@@ -54,6 +54,10 @@ class HomeController {
         }
     }
 
+    private def calcularNumeroJobs(HomeCommand command) {
+        return command.diaSemana.size() * command.horas.size()
+    }
+
     def createAlerta = {HomeCommand cmd ->
         if (cmd.hasErrors()) {
             renderValidationErrors(cmd)
@@ -67,6 +71,7 @@ class HomeController {
                     diasSemana: cmd.diaSemana,
                     horas: cmd.horas,
                     minutos: cmd.minutos)
+            alerta.numeroJobs = calcularNumeroJobs(cmd)
             alerta.save()
             alertasQuartzService.programar(alerta)
             render(view: "exito", model: [carretera: carretera, cmd: cmd])

@@ -1,29 +1,45 @@
-<%@ page contentType="text/html"%>
+<%@ page contentType="text/html" %>
 <html>
-  <head><title>Tus alertas de tráfico</title></head>
-  <body>
+<head>
+    <title>Tus alertas de tráfico</title>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'style.css')}"/>
+    <link rel="shortcut icon" href="${resource(dir: 'images', file: 'cono_small.jpg')}" type="image/x-icon"/>
+    <g:javascript library="application"/>
+</head>
+<head><title>Tus alertas de tráfico</title></head>
+<body>
 
-      <g:each in="${incidencias}" var="incidencia">
-            <div class="incidencia">
-          Incidencia en ${incidencia.carretera.nombre}, con motivo de ${incidencia.causa.description}.
+<p><h3>Incidencias en ${alerta.carretera.nombre}</h3></p>
 
-          Desde el kilómetro ${incidencia.pkInicial} hasta el ${incidencia.pkFinal},
-          hay un nivel de circulación ${incidencia.nivelCirculacion.description}, en sentido ${incidencia.sentido}
-          desde las <g:formatDate date="${incidencia.dateInicio}" format="hh:mm"/>.
-            </div>
-      </g:each>
+<ul>
+<g:each in="${incidencias}" var="incidencia">
+    <li>
+        <h4>Incidencia con motivo de ${incidencia.causa.description}.</h4>
+
+        Desde el kilómetro ${incidencia.pkInicial} hasta el ${incidencia.pkFinal},
+        hay un nivel de circulación ${incidencia.nivelCirculacion.description}, en sentido ${incidencia.sentido}
+        desde las <g:formatDate date="${incidencia.dateInicio}" format="hh:mm"/>.
+    </li>
+</g:each>
+</ul>
 
 
-        <p>
-            Puedes eliminar tu suscripción a esta alerta pinchando <g:createLink controller="token" action="cancelarAlerta" params="${[token:alerta.token]}">aquí</g:createLink>.
-        </p>
+<p>
+    <h4>
+        Puedes eliminar tu suscripción a esta alerta pinchando <a href="${createLink(controller:'token',action:'cancelarAlerta', absolute:true, params:[token:alerta.token])}">aquí</a>.
+    </h4>
+</p>
 
-        <p>
-            Puedes eliminar todas tus suscripciones pinchando <g:createLink controller="token" action="cancelarSuscripcion" params="${[email:alerta.email]}">aquí</g:createLink>.
-        </p>
+<p>
+    <h4>
+        Puedes eliminar todas tus suscripciones pinchando <a href="${createLink(controller:'token',action:'cancelarSuscripcion', absolute:true, params:[email:alerta.email])}">aquí</a>
+    </h4>
+</p>
 
-        <p>
-            Puedes informar de un posible uso indebido pinchando <g:createLink controller="token" action="usoInadecuado" params="${[email:alerta.email]}">aquí</g:createLink>.
-        </p>
-  </body>
+<p>
+    <h4>
+        Puedes informar de un posible uso indebido pinchando <a href="${createLink(controller:'token',action:'usoInadecuado', absolute:true, params:[email:alerta.email])}">aquí</a>.
+    </h4>
+</p>
+</body>
 </html>

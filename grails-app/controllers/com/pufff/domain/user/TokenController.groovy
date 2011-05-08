@@ -12,7 +12,7 @@ class TokenController {
     }
 
     def cancelarAlerta = {
-        Alerta alerta = Alerta.findAllByToken(params.token)
+        Alerta alerta = Alerta.findByToken(params.token)
         eliminarAlerta(alerta)
     }
 
@@ -23,7 +23,11 @@ class TokenController {
 
     private def eliminarAlerta(Alerta alerta) {
         if(alerta) {
-            alertasQuartzService.cancelar(alerta)
+            try {
+                alertasQuartzService.cancelar(alerta)
+            } catch(Exception e) {
+                log.error 'No he podido cancelar la alerta en quartz, seguramente porque no existe'
+            }
             alerta.delete()
         }
     }

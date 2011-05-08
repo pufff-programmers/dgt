@@ -13,15 +13,20 @@ class AlertasQuartzService {
     // Programa una tarea nueva en quartz para el envío de alertas
     def programar(Alerta alerta) {
         def cronExpressions = buildCronExpression(alerta)
-        cronExpressions.each { String cronExpression ->
-            CronTrigger trigger = new CronTrigger(name: "${alerta.id}_${alerta.email}", group: GrailsTaskClassProperty.DEFAULT_GROUP, jobName: alerta.id as String, jobGroup: alerta.email, cronExpression: cronExpression, volatility: true)
+        cronExpressions.eachWithIndex { String cronExpression, index ->
+            CronTrigger trigger = new CronTrigger(
+                    name: "${alerta.id}_${alerta.email}_${index}", group: GrailsTaskClassProperty.DEFAULT_GROUP,
+                    jobName: alerta.id as String, jobGroup: alerta.email, cronExpression: cronExpression, volatility: false)
             AlertasJob.schedule(trigger)
         }
     }
 
     // Cancela una tarea de quartz para el envío de alertas
     def cancelar(Alerta alerta) {
-        AlertasJob.unschedule(alerta.id, alerta.email)
+        def cronExpressions = buildCronExpression(alerta)
+        for(int i=0; i<alerta.numeroJobs; i++) {
+            AlertasJob.unschedule("${alerta.id}_${alerta.email}_${i}", GrailsTaskClassProperty.DEFAULT_GROUP)
+        }
     }
 
     private def buildCronExpression(Alerta alerta) {

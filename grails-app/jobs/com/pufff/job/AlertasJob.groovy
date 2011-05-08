@@ -9,7 +9,7 @@ class AlertasJob {
 
     def alertasMailService
 
-    def volatility = true
+    def volatility = false
 
     static triggers = { }
 
