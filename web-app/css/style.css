@@ -105,11 +105,11 @@ width:inherit;
 height:auto;
 }
 
-#footer h3 a,#footer h3 a:visited
+#footer h3,#footer h3
 {
 display:inline;
 text-align:center;
-font-size:12px;
+font-size:14px;
 text-decoration:none;
 color:#7198E1;
 }

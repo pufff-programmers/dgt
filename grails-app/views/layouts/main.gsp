@@ -18,18 +18,12 @@
                 <h2>Recibe diariamente en tu email las incidencias de tus rutas habituales</h2>
             </div>
         </div>
-                <%--
-        <div id="grailsLogo">
-            <img src="${resource(dir:'images',file:'cono.jpg')}" alt="Tu avisador personal de incidencias" border="0" />
-        </div>
-        --%><div id="content">
-            <%--  Mensajes y errores --%>
+        <div id="content">
             <g:layoutBody />
-        </div>
-        <div id="footer">
-            <h3>
+            <br/>
+            <br/>
                 Una aplicación de <a href="#">Mario Muñoz</a> y <a href="http://twitter.com/#!/marianongdev">Mariano Navas</a>
-            </h3>
+                para el desafío <a href="http://www.abredatos.es/">Abredatos 2011</a>. Ver <a href="https://github.com/pufff-programmers/dgt">Código fuente</a>
         </div>
     </body>
 </html>
