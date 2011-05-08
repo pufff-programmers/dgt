@@ -11,6 +11,13 @@
   <head>
     <title>Las incidencias en tus rutas</title>
     <meta name="layout" content="main" />
+    <script type="text/javascript">
+        function goRss() {
+            //alert("Llama a la función ok")
+            document.getElementById("isRss").value=true;
+            document.getElementById("formu").submit();
+        }
+    </script>
   </head>
   <body>
     <p><h3>¿Cómo funciona?</h3></p>
@@ -24,7 +31,8 @@
         </div>
     </g:hasErrors>
     <%--  Fin Mensajes y errores --%>
-    <g:form controller="home" action="createAlerta">
+    <g:form id="formu" name="formu" controller="home" action="createAlerta">
+        <g:hiddenField name="isRss" value="false" id="isRss"/>
         <ol>
             <li>
                 <h4>Elige una carretera a nivel nacional</h4>
@@ -38,6 +46,16 @@
                 Desde <g:textField name="pkInicial" size="8"/> Km.<%-- value="${fieldValue(bean: alertaInstance, field: 'pkInicial')}" size="8"--%>
                 hasta <g:textField name="pkFinal" size="8"/> Km.
                 <br/>
+                <br/>
+            </li>
+            <li>
+                <h4>
+                    Con esto puedes ya acceder a un
+                    <a href="http://es.wikipedia.org/wiki/RSS">feed RSS</a> con información sobre incidencias en tiempo real
+                    (haz clic en el icono <g:actionSubmitImage value="goRss" action="goRss" src="${resource(dir:'images',file:'rss_icon.gif')}"/>
+                    y copia la dirección de la página que se abra en tu lector de feeds).
+                    Si prefieres recibir las alertas en tu email, sigue completando los siguientes pasos.
+                </h4>
                 <br/>
             </li>
             <li>

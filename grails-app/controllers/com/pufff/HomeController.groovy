@@ -6,6 +6,7 @@ import com.pufff.domain.user.Alerta
 class HomeController {
 
     def alertasQuartzService
+    def incidenciasService
 
     def index = {
         return getDefModel()
@@ -18,11 +19,44 @@ class HomeController {
                 numHoras: 4]
     }
 
+    private void renderValidationErrors(def cmd) {
+        Map model = [cmd: cmd]
+        model.putAll(getDefModel())
+        render([view: 'index', model: model])
+    }
+
+    def goRss = {
+        HomeCommand cmd ->
+        boolean carreteraOk=cmd.carretera!= null
+        boolean pksOk = cmd.pkInicial!= null && cmd.pkFinal!= null
+        if(!carreteraOk||!pksOk) {
+            renderValidationErrors(cmd)
+        } else {
+            redirect(action: "showRss", params: [carretera: cmd.carretera, pkInicial: cmd.pkInicial, pkFinal: cmd.pkFinal])
+        }
+    }
+
+    def showRss = {
+        println(params)
+        render(feedType:"rss", feedVersion:"2.0") {
+            Carretera carr = Carretera.findById(params.carretera)
+            title = "Mis incidencias en la ${carr.nombre}"
+            link = "#"
+            description = """Feed en tiempo real con las incidencias entre los kilómetros ${params.pkInicial}
+                y ${params.pkFinal} de la ${carr.nombre}. Información obtenida de la <a href='www.dgt.es/incidencias.xml'>DGT</a>"""
+            def incidencias = incidenciasService.findIncidencias(carr, params.pkInicial as Double, params.pkFinal as Double)
+            incidencias.each {incidencia ->
+                entry("${incidencia.dateInicio} - ${incidencia.tipo.description} en ${incidencia.poblacion.nombre} (${incidencia.provincia.nombre})") {
+                    //link = "http://your.test.server/article/${article.id}"
+                    "Nivel ${incidencia.nivelCirculacion.description} debido a ${incidencia.causa.description} en sentido ${incidencia.sentido} hacia ${incidencia.hacia}"
+                }
+            }
+        }
+    }
+
     def createAlerta = {HomeCommand cmd ->
         if (cmd.hasErrors()) {
-            Map model = [cmd: cmd]
-            model.putAll(getDefModel())
-            render([view: 'index', model: model])
+            renderValidationErrors(cmd)
         }
         else {
             Carretera carretera = Carretera.findById(cmd.carretera)
@@ -40,7 +74,6 @@ class HomeController {
     }
 }
 
-
 class HomeCommand {
     Integer carretera
     Double pkInicial
@@ -49,6 +82,7 @@ class HomeCommand {
     List diaSemana
     List horas
     List minutos
+    Boolean isRss
 
     static constraints = {
         carretera(nullable: false, blank: false)
