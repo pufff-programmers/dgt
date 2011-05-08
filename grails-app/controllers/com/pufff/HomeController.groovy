@@ -15,7 +15,7 @@ class HomeController {
 
     private Map getDefModel() {
         def diaSemanaBean = ['L': 'MON', 'M': 'TUE', 'X': 'WED', 'J': 'THU',
-                'F': 'FRI', 'S': 'SAT', 'D': 'SUN']
+                'V': 'FRI', 'S': 'SAT', 'D': 'SUN']
         return [diaSemanaBean: diaSemanaBean,
                 numHoras: 4]
     }

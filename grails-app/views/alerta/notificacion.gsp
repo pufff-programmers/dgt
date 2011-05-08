@@ -26,20 +26,15 @@
 
 <p>
     <h4>
-        Puedes eliminar tu suscripción a esta alerta pinchando <a href="${createLink(controller:'token',action:'cancelarAlerta', absolute:true, params:[token:alerta.token])}">aquí</a>.
+        Puedes eliminar tu suscripción a esta alerta pinchando <g:link controller="token" action="cancelarAlerta" params="${[token:alerta.token]}" absolute="true">aquí</g:link>
     </h4>
 </p>
 
 <p>
     <h4>
-        Puedes eliminar todas tus suscripciones pinchando <a href="${createLink(controller:'token',action:'cancelarSuscripcion', absolute:true, params:[email:alerta.email])}">aquí</a>
+        Puedes eliminar todas tus suscripciones pinchando <g:link controller="token" action="cancelarSuscripcion" params="${[email:alerta.email]}" absolute="true">aquí</g:link>
     </h4>
 </p>
 
-<p>
-    <h4>
-        Puedes informar de un posible uso indebido pinchando <a href="${createLink(controller:'token',action:'usoInadecuado', absolute:true, params:[email:alerta.email])}">aquí</a>.
-    </h4>
-</p>
 </body>
 </html>

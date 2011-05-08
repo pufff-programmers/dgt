@@ -4,10 +4,11 @@
         <g:javascript library="jquery" plugin="jquery" />
         <title><g:layoutTitle default="Grails" /></title>
         <link rel="stylesheet" href="${resource(dir:'css',file:'main2.css')}" />
-        <link rel="shortcut icon" href="${resource(dir:'images',file:'cono_small.jpg')}" type="image/x-icon" />
+        <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.png')}" type="image/x-icon" />
         <g:layoutHead />
         <g:javascript src="jquery-ui-1.8.12.custom.min.js"/>
         <g:javascript src="jquery.alphanumeric.pack.js"/>
+        <g:javascript src="easing.js"/>
     </head>
     <body>
         <div id="header">
@@ -25,9 +26,13 @@
 		<div class="wrap">
 			<div id="image"></div>
 			<div class="box">
-				<h2><em>Alertas de tráfico personalizadas</em></h2>
+				<h2>Alertas de tráfico personalizadas</h2>
 				<p>Crea tus alertas de tráfico y recíbelas en tu dirección de correo electrónico cuando quieras, o consúltalas en tu lector de RSS.
                    ¡No hace falta registrarse!</p>
+                <p>
+                    Esta aplicación ha sido desarrollada durante el <a href="http://www.abredatos.es/">Desafío Abredatos 2011</a>,
+                usando <a href="http://www.grails.org">grails</a>, <a href="http://jquery.com">jQuery</a> y <a href="http://github.com">github</a>.
+                </p>
 			</div>
 		</div>
 	</div>

@@ -13,6 +13,17 @@
     <meta name="layout" content="main" />
     <script type="text/javascript">
         $(document).ready(function() {
+            if($('select#carretera option:selected').val() != '') {
+                $('#kilometers').show();
+                $('#step2').show();
+            }
+            var kmInicial = $('#pkInicial').val();
+            var kmFinal = $('#pkFinal').val();
+            if(kmInicial != '' && kmFinal != '') {
+                 $('#config').show();
+                $('#step3').show();
+                $('#submit').show();
+            }
             $('#pkInicial').numeric();
             $('#pkFinal').numeric();
         });
@@ -64,11 +75,15 @@
         </g:hasErrors>
 
 		<div class="col">
-			<g:select name="carretera" from="${com.pufff.domain.trafico.Carretera.list(sort:'nombre')}" optionKey="id" optionValue="nombre" noSelection="['':'--']" onchange="javascript:showKilometers();"/>
+			<g:select id="carretera" name="carretera" from="${com.pufff.domain.trafico.Carretera.list(sort:'nombre')}" optionKey="id" optionValue="nombre" noSelection="['':'--']" value="${cmd?.carretera}" onchange="javascript:showKilometers();"/>
 		</div>
 		<div class="col"  id="kilometers" style="display:none">
-			Desde <g:textField id="pkInicial" name="pkInicial" size="8" onkeyup="javascript:testKilometersForm();"/> Km.<%-- value="${fieldValue(bean: alertaInstance, field: 'pkInicial')}" size="8"--%>
-            hasta <g:textField id="pkFinal" name="pkFinal" size="8" onkeyup="javascript:testKilometersForm();"/> Km.
+            <p>
+			Desde el km <g:textField id="pkInicial" name="pkInicial" value="${cmd?.pkInicial}" size="8" onkeyup="javascript:testKilometersForm();"/> <%-- value="${fieldValue(bean: alertaInstance, field: 'pkInicial')}" size="8"--%>
+            </p>
+            <p>
+            Hasta el km <g:textField id="pkFinal" name="pkFinal" value="${cmd?.pkFinal}" size="8" onkeyup="javascript:testKilometersForm();"/>
+            </p>
 		</div>
 		<div class="col last" id="config" style="display:none;">
 			<h3>Alertas por  <span class="red">RSS</span></h3>
@@ -102,7 +117,9 @@
                 <g:textField name="email"/>
             </p>
             <p>
-                <g:submitButton style="display:none" id="submit" name="submit" value="Crear alerta"/>
+                <button class="rounded" onclick="this.form.submit()">
+                  <span>Crear alerta</span>
+                </button>
             </p>
 		</div>
 		</g:form>

@@ -15,11 +15,11 @@
   <body>
     <div id="bar">
         <div class="wrap">
-            <span class="step" id="step1"><a>&nbsp;</a>  !Enhorabuena!</span>
+            <span class="step" id="step1"><a>&nbsp;&nbsp;</a>  !Enhorabuena!</span>
         </div>
     </div>
     <div class="wrap">
-        <h3>Creada correctamente alerta en ${carretera.nombre}, kilómetros ${cmd.pkInicial} a ${cmd.pkFinal}, a la dirección ${cmd.email}. Puedes crear más para otras carreteras y/o tramos que utilices habitualmente</h3>
+        <p>Creada correctamente alerta en ${carretera.nombre}, kilómetros ${cmd.pkInicial} a ${cmd.pkFinal}, a la dirección ${cmd.email}. Puedes crear más para otras carreteras y/o tramos que utilices habitualmente</p>
         <br/>
         <g:link action="index">Volver a la página de creación de alertas</g:link>
     </div>
