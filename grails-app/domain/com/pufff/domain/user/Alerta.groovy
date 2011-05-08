@@ -22,4 +22,8 @@ class Alerta {
     }
 
     static transients = ['diasSemana', 'horas', 'minutos']
+
+    public String toString() {
+        return "${carretera.nombre}, kilómetros ${pkInicial}-${pkFinal}"
+    }
 }

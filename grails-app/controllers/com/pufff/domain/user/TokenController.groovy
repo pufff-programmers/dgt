@@ -9,11 +9,14 @@ class TokenController {
         alertas.each { alerta ->
             eliminarAlerta(alerta)
         }
+        render(view: "desuscripcion", model: [email: params.email])
     }
 
     def cancelarAlerta = {
         Alerta alerta = Alerta.findByToken(params.token)
+        String nombreAlerta = alerta.toString()
         eliminarAlerta(alerta)
+        render(view: "cancelacion", model: [nombre: nombreAlerta])
     }
 
     def usoInadecuado = {
