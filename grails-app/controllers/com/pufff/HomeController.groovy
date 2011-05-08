@@ -126,7 +126,6 @@ class HomeCommand {
         carretera(nullable: false, blank: false)
         pkInicial(blank: false, nullable: false)
         pkFinal(blank: false, nullable: false)
-        //diaSemana(size: 1..7, nullable:false, blank:false)
         email(email: true, blank: false)
     }
 }

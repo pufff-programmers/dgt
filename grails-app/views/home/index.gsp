@@ -17,6 +17,18 @@
             document.getElementById("isRss").value=true;
             document.getElementById("formu").submit();
         }
+
+        function testKilometersForm() {
+            var kmInicial = $('#pkInicial').val();
+            var kmFinal = $('#pkFinal').val();
+            if(kmInicial != '' && kmFinal != '') {
+                $('#otherConfig').slideDown();
+            }
+        }
+
+        function showKilometers() {
+            $('#kilometers').slideDown();
+        }
     </script>
   </head>
   <body>
@@ -37,17 +49,18 @@
             <li>
                 <h4>Elige una carretera a nivel nacional</h4>
                 <br/>
-                <g:select name="carretera" from="${com.pufff.domain.trafico.Carretera.list(sort:'nombre')}" optionKey="id" optionValue="nombre" noSelection="['':'--']"/>
+                <g:select name="carretera" from="${com.pufff.domain.trafico.Carretera.list(sort:'nombre')}" optionKey="id" optionValue="nombre" noSelection="['':'--']" onchange="javascript:showKilometers();"/>
                 <br/><br/>
             </li>
-            <li>
+            <li id="kilometers" style="display:none">
                 <h4>Selecciona los puntos kilométricos que te afectan</h4>
                 <br/>
-                Desde <g:textField name="pkInicial" size="8"/> Km.<%-- value="${fieldValue(bean: alertaInstance, field: 'pkInicial')}" size="8"--%>
-                hasta <g:textField name="pkFinal" size="8"/> Km.
+                Desde <g:textField id="pkInicial" name="pkInicial" size="8" onkeyup="javascript:testKilometersForm();"/> Km.<%-- value="${fieldValue(bean: alertaInstance, field: 'pkInicial')}" size="8"--%>
+                hasta <g:textField id="pkFinal" name="pkFinal" size="8" onkeyup="javascript:testKilometersForm();"/> Km.
                 <br/>
                 <br/>
             </li>
+            <div id="otherConfig" style="display:none">
             <li>
                 <h4>
                     Con esto puedes ya acceder a un
@@ -96,6 +109,7 @@
                 <br/>
                 <g:textField name="email"/>
             </li>
+            </div>
         </ol>
         <br/>
         <g:submitButton name="submit" value="Crear alerta"/>
