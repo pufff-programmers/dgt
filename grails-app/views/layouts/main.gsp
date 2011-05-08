@@ -32,8 +32,6 @@
                 <p>
                     Esta aplicación ha sido desarrollada durante el <a href="http://www.abredatos.es/">Desafío Abredatos 2011</a>,
                 usando <a href="http://www.grails.org">grails</a>, <a href="http://jquery.com">jQuery</a> y <a href="http://github.com">github</a>.
-                </p>
-                <p>
                     Los datos de incidencias de tráfico se obtienen de la <a href="http://www.dgt.es/incidencias.xml">Dirección General de Tráfico</a>.
                 </p>
 			</div>
