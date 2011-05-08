@@ -58,8 +58,8 @@
   <div id="bar">
             <div class="wrap">
                 <span class="step" id="step1"><a>1</a> Elige una carretera</span>
-                <span class="step" id="step2" style="display:none"><a>2</a> Elige el tramo que te interesa</span>
-                <span class="step" id="step3" style="display:none"><a>3</a> Configura tus alertas</span>
+                <span class="step" id="step2" ><a>2</a> Elige el tramo que te interesa</span>
+                <span class="step" id="step3" ><a>3</a> Configura tus alertas</span>
             </div>
 	    </div>
 
