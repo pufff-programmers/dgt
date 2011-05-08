@@ -15,7 +15,7 @@ class IncidenciasService {
         def parseos = Parseo.list(sort: 'id')
         Parseo parseo = parseos.last()
         def incidenciaCriteria = Incidencia.createCriteria()
-        incidenciaCriteria.list {
+        def listaIncidencias = incidenciaCriteria.list {
             and {
                 eq('parseo', parseo)
                 eq('carretera', carr)
@@ -23,6 +23,8 @@ class IncidenciasService {
                 le('pkFinal', pkFinal)
             }
         }
+        listaIncidencias.sort()
+        return listaIncidencias
     }
 
     /*def incidenciaCriteria = Incidencia.createCriteria()
