@@ -1,6 +1,6 @@
 package com.pufff.domain.trafico
 
-class Incidencia {
+class Incidencia implements Comparable {
     TipoIncidencia tipo
     Autonomia autonomia
     Provincia provincia
@@ -29,5 +29,13 @@ class Incidencia {
         pkFinal(nullable: false)
         sentido(nullable: true)
         hacia(nullable: true)
+    }
+
+    int compareTo(Object o) {
+        if(o instanceof Incidencia) {
+            return o.dateInicio-dateInicio
+        } else {
+            return 0
+        }
     }
 }
