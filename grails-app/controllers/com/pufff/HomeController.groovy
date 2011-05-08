@@ -127,5 +127,6 @@ class HomeCommand {
         pkInicial(blank: false, nullable: false)
         pkFinal(blank: false, nullable: false)
         email(email: true, blank: false)
+        diaSemana(nullable:false, size: 1..7)
     }
 }
