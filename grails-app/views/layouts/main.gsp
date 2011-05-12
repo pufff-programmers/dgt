@@ -48,5 +48,16 @@
             <p>Una aplicación de <a href="http://twitter.com/#!/mariomgal">Mario Muñoz</a> y <a href="http://twitter.com/#!/marianongdev">Mariano Navas</a>
                 para el desafío <a href="http://www.abredatos.es/">Abredatos 2011</a>.</p>
         </div>
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-23292064-1']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
     </body>
 </html>
