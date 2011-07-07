@@ -29,6 +29,18 @@ class DgtXmlParserService {
             }
         }
         parseo.save()
+        //Añadimos borrado de todos los parseos anteriores al último mes ... y de sus incidencias asociadas
+        deleteOldLoads()
+    }
+
+    private void deleteOldLoads() {
+        Calendar cal = Calendar.instance
+        cal.set(Calendar.MONTH, -1)
+        Collection<Parseo> result = Parseo.findAllByDateParseoLessThan(cal.time)
+        result.each {
+            it.delete()
+        }
+        log.info("Borrados ${result.size()} registros antiguos de Parseo (y sus incidencias asociadas)")
     }
 
     private Incidencia parseIncidencia(incidenciaXml) {
